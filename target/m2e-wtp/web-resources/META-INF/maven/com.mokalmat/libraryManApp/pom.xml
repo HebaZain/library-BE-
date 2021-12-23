@@ -31,22 +31,6 @@
 	    <artifactId>postgresql</artifactId>
 	    <version>42.3.1</version>
 	</dependency>
-	<dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.1</version>
-    </dependency>
-	<dependency>
-	    <groupId>org.postgresql</groupId>
-	    <artifactId>postgresql</artifactId>
-	    <scope>runtime</scope>
-   </dependency>
-	
-	<dependency>     
-	  <groupId>org.postgresql</groupId>     
-	  <artifactId>postgresql</artifactId>     
-	  <version>9.4-1206-jdbc42</version> 
-	 </dependency>
 	
 	
 	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -86,18 +70,6 @@
                 </configuration>
             </plugin>
             
-            <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-jar-plugin</artifactId>
-			    <configuration>
-			        <archive>
-			            <manifest>
-			                <addClasspath>true</addClasspath> 
-			                <classpathPrefix>lib/</classpathPrefix>
-			            </manifest>
-			        </archive>
-			    </configuration>
-			</plugin>
             
 		
 	</plugins>

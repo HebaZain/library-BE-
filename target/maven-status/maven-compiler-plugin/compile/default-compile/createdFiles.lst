@@ -1,0 +1,5 @@
+com\mokalmat\libraryManApp\Servlets\addBookServlet.class
+libraryManApp\Response.class
+libraryManApp\Books.class
+com\mokalmat\libraryManApp\Servlets\addBook.class
+libraryManApp\getConnectionLibrary.class

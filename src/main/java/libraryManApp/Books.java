@@ -5,33 +5,21 @@ public class Books {
 	private String title;
 	private String publisher;
 	private String category;
-	private String price;
-
-	//constructors
-	public Books() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private int year;
 	
-	public Books(int iD, String title, String publisher, String category, String price) {
-		super();
-		ID = iD;
-		this.title = title;
-		this.publisher = publisher;
-		this.category = category;
-		this.price = price;
-	}
-
-	//setter & getter
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
+	public Books() {}
+	
 	public String getTitle() {
 		return title;
 	}
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -48,19 +36,21 @@ public class Books {
 		this.category = category;
 	}
 
-	public String getPrice() {
-		return price;
+	public int getYear() {
+		return year;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	@Override
 	public String toString() {
 		return "Books [ID=" + ID + ", title=" + title + ", publisher=" + publisher + ", category=" + category
-				+ ", price=" + price + "]";
+				+ ", year=" + year + "]";
 	}
+
+	
 	
 	
 	

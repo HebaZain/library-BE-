@@ -9,14 +9,20 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import libraryManApp.Books;
 import libraryManApp.Response;
+
+
 
 
 /**
@@ -68,8 +74,8 @@ public class addBookServlet extends HttpServlet {
 			String DB_URL="jdbc:postgresql://localhost:5432/Library";
 			String userName="postgres";
 			String password="database";
-			String queryInsert, queryCreate;
-			PreparedStatement pstCreate, pstInsert;
+			String queryInsert, queryCreate, queryError;
+			PreparedStatement pstCreate, pstInsert, pstError;
 			Connection connection = DriverManager.getConnection(DB_URL, userName, password);
 			if(connection==null) {
 				System.out.println("Not");
@@ -98,22 +104,24 @@ public class addBookServlet extends HttpServlet {
 			System.out.println(
 					"ID" +book.getID()
 					+"title"+book.getTitle()
-					);
-			
-			/*queryCreate="create table bookInfo (id int, title varchar (200), publisher varchar (150), category varchar (100), price varchar (50), primary key(id))";
+					);			
+			/*queryCreate="create table bookDetails (id int, title varchar (200), publisher varchar (150), category varchar (100), year int , hide varchar(10), primary key(id))";
 			pstCreate=connection.prepareStatement(queryCreate);
 			pstCreate.execute();
 			writer.print(jsonStrSucc);
             System.out.println("table Added");*/
 			
-			queryInsert="insert into bookInfo (id, title, publisher, category, price) values (?, ?, ?, ?, ?)";
+			
+			
+			queryInsert="insert into bookDetails (id, title, publisher, category, year, hide) values (?, ?, ?, ?, ?, ?)";
 			pstInsert=connection.prepareStatement(queryInsert);
 			
 			pstInsert.setInt(1, book.getID());
 			pstInsert.setString(2, book.getTitle());
 			pstInsert.setString(3, book.getPublisher());
 			pstInsert.setString(4,book.getCategory());
-			pstInsert.setString(5, book.getPrice());
+			pstInsert.setInt(5, book.getYear());
+			pstInsert.setString(6,"NO");
 			pstInsert.executeUpdate();
             //connection.commit();
             writer.print(jsonStrSucc);

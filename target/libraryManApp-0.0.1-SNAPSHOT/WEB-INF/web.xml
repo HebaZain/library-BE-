@@ -29,4 +29,24 @@
     <servlet-name>addBookServlet</servlet-name>
     <url-pattern>/addBookServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayBooksServlet</display-name>
+    <servlet-name>DisplayBooksServlet</servlet-name>
+    <servlet-class>com.mokalmat.libraryManApp.Servlets.DisplayBooksServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayBooksServlet</servlet-name>
+    <url-pattern>/DisplayBooksServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditBookServlet</display-name>
+    <servlet-name>EditBookServlet</servlet-name>
+    <servlet-class>com.mokalmat.libraryManApp.Servlets.EditBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditBookServlet</servlet-name>
+    <url-pattern>/EditBookServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

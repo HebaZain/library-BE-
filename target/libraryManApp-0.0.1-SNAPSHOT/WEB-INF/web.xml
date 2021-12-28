@@ -49,4 +49,14 @@
     <servlet-name>EditBookServlet</servlet-name>
     <url-pattern>/EditBookServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditDetailsServlet</display-name>
+    <servlet-name>EditDetailsServlet</servlet-name>
+    <servlet-class>com.mokalmat.libraryManApp.Servlets.EditDetailsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDetailsServlet</servlet-name>
+    <url-pattern>/EditDetailsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -45,7 +45,7 @@ public class DisplayBooksServlet extends HttpServlet {
 		
 		List<BookDetails> list = new ArrayList<BookDetails>();
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "POST");
+		response.setHeader("Access-Control-Allow-Methods", "GET");
 		String DB_URL="jdbc:postgresql://localhost:5432/Library";
 		String userName="postgres";
 		String password="database";

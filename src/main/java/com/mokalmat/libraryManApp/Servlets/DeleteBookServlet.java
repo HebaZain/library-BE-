@@ -17,9 +17,6 @@ import com.google.gson.Gson;
 import libraryManApp.Books;
 import libraryManApp.Response;
 
-/**
- * Servlet implementation class DeleteBookServlet
- */
 @WebServlet(name="DeleteBookServlet" , urlPatterns= {"/DeleteBookServlet"})
 public class DeleteBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

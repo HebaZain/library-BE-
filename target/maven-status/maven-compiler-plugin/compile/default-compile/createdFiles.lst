@@ -2,6 +2,7 @@ com\mokalmat\libraryManApp\Servlets\addBookServlet.class
 libraryManApp\Books.class
 libraryManApp\getConnectionLibrary.class
 com\mokalmat\libraryManApp\Servlets\DisplayBooksServlet.class
+com\mokalmat\libraryManApp\Servlets\DeleteBookServlet.class
 com\mokalmat\libraryManApp\Servlets\EditDetailsServlet.class
 libraryManApp\Response.class
 com\mokalmat\libraryManApp\Servlets\EditBookServlet.class

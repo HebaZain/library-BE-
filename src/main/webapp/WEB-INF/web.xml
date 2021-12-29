@@ -69,4 +69,14 @@
     <servlet-name>DeleteBookServlet</servlet-name>
     <url-pattern>/DeleteBookServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HideServlet</display-name>
+    <servlet-name>HideServlet</servlet-name>
+    <servlet-class>com.mokalmat.libraryManApp.Servlets.HideServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HideServlet</servlet-name>
+    <url-pattern>/HideServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

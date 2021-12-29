@@ -79,4 +79,14 @@
     <servlet-name>HideServlet</servlet-name>
     <url-pattern>/HideServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserBooks</display-name>
+    <servlet-name>UserBooks</servlet-name>
+    <servlet-class>com.mokalmat.libraryManApp.Servlets.UserBooks</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserBooks</servlet-name>
+    <url-pattern>/UserBooks</url-pattern>
+  </servlet-mapping>
 </web-app>

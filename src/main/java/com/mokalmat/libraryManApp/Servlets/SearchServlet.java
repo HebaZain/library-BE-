@@ -32,10 +32,10 @@ public class SearchServlet extends HttpServlet {
 		String query;
 		PreparedStatement pst;
 		Books book = new Books();
-		//Response resSucc =new Response();
-		//resSucc.setStatusCode(0);
-		//Gson resSuccgson = new Gson();
-		//String succ = resSuccgson.toJson(resSucc);
+		Response resFail =new Response();
+		resFail.setStatusCode(-1);
+		Gson resFailgson = new Gson();
+		String Fail = resFailgson.toJson(resFail);
 		Gson respData = new Gson();
 		PrintWriter writer= response.getWriter();
 		
@@ -61,10 +61,10 @@ public class SearchServlet extends HttpServlet {
 				book.setCategory(rs.getString(4));
 				book.setYear(rs.getInt(5));
 			}
+			
 			System.out.print("ID is :" +book.getID() + "publ"+ book.getPublisher());
 			
 			String data = respData.toJson(book);
-			//writer.print(succ);
 			writer.print(data);
 			
 		}catch(Exception e) {

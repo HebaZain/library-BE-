@@ -1,3 +1,4 @@
+com\mokalmat\libraryManApp\Servlets\SearchServlet.class
 libraryManApp\Books.class
 libraryManApp\getConnectionLibrary.class
 libraryManApp\UserBookDetails.class

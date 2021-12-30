@@ -38,8 +38,6 @@ public class UserBooksAction extends HttpServlet {
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
-		Gson gsonDisplay = new Gson();
-		Gson gsonList = new Gson();
 		resSuccess.setStatusCode(0);
 		PrintWriter writer =response.getWriter();
 		try {
@@ -49,7 +47,7 @@ public class UserBooksAction extends HttpServlet {
 			
 			
 			//String statusHide ="NO";
-			query="select title, publisher, category, year from bookDetails ";/*' "+ statusHide +"'"*/ //where hide=No
+			query="select title, publisher, category, year from bookDetails where hide= 'no' ";/*' "+ statusHide +"'"*/ //where hide=No
 			pst=con.prepareStatement(query);
 			
 			ResultSet rs = pst.executeQuery();

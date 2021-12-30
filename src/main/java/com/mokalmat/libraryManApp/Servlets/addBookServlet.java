@@ -121,7 +121,7 @@ public class addBookServlet extends HttpServlet {
 			pstInsert.setString(3, book.getPublisher());
 			pstInsert.setString(4,book.getCategory());
 			pstInsert.setInt(5, book.getYear());
-			pstInsert.setString(6,"NO");
+			pstInsert.setString(6,"no");
 			pstInsert.executeUpdate();
             //connection.commit();
             writer.print(jsonStrSucc);

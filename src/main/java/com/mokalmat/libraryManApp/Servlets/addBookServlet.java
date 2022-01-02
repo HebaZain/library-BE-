@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 
 import libraryManApp.Books;
 import libraryManApp.Response;
+import libraryManApp.libraryConnection;
 
 
 
@@ -31,20 +32,8 @@ import libraryManApp.Response;
 @WebServlet(name = "addBookServlet", urlPatterns = {"/addBookServlet"})
 public class addBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-		
-    public addBookServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -55,7 +44,10 @@ public class addBookServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	
-	  
+	  public void init() throws ServletException{
+		  super.init();
+		  connection= con.libraryCon();
+	  }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson = new Gson();
@@ -68,21 +60,21 @@ public class addBookServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 
 		try {
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("Access-Control-Allow-Methods", "POST");
-			Class.forName("org.postgresql.Driver");
-			String DB_URL="jdbc:postgresql://localhost:5432/Library";
-			String userName="postgres";
-			String password="database";
+			//response.setHeader("Access-Control-Allow-Origin", "*");
+			//response.setHeader("Access-Control-Allow-Methods", "POST");
+			//Class.forName("org.postgresql.Driver");
+			//String DB_URL="jdbc:postgresql://localhost:5432/Library";
+			//String userName="postgres";
+			//String password="database";
 			String queryInsert, queryCreate, queryError;
 			PreparedStatement pstCreate, pstInsert, pstError;
-			Connection connection = DriverManager.getConnection(DB_URL, userName, password);
-			if(connection==null) {
-				System.out.println("Not");
-			}
-			else {
-			System.out.println("Opened");
-			}  
+			//Connection connection = DriverManager.getConnection(DB_URL, userName, password);
+			//if(connection==null) {
+				//System.out.println("Not");
+			//}
+			//else {
+			//System.out.println("Opened");
+			//}  
 			InputStream in = request.getInputStream();
 		    InputStreamReader streamReader = new InputStreamReader(in);
 		    Books book = gson.fromJson(streamReader, Books.class);
@@ -126,7 +118,6 @@ public class addBookServlet extends HttpServlet {
             //connection.commit();
             writer.print(jsonStrSucc);
             System.out.println("Inserted");
-			
 			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

@@ -21,6 +21,7 @@ import com.google.gson.JsonArray;
 
 import libraryManApp.BookDetails;
 import libraryManApp.Response;
+import libraryManApp.libraryConnection;
 
 /**
  * Servlet implementation class DisplayBooksServlet
@@ -29,6 +30,14 @@ import libraryManApp.Response;
 @WebServlet(name = "DisplayBooksServlet", urlPatterns = {"/DisplayBooksServlet"})
 public class DisplayBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
+	
+	public void init() throws ServletException{
+		super.init();
+		connection=con.libraryCon();
+		
+	}
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,11 +53,11 @@ public class DisplayBooksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<BookDetails> list = new ArrayList<BookDetails>();
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		String DB_URL="jdbc:postgresql://localhost:5432/Library";
-		String userName="postgres";
-		String password="database";
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		//response.setHeader("Access-Control-Allow-Methods", "GET");
+		//String DB_URL="jdbc:postgresql://localhost:5432/Library";
+		//String userName="postgres";
+		//String password="database";
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
@@ -61,12 +70,12 @@ public class DisplayBooksServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		
 		try {
-			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection(DB_URL, userName, password);
-			System.out.println("Connection Opened");
+			//Class.forName("org.postgresql.Driver");
+			//Connection con = DriverManager.getConnection(DB_URL, userName, password);
+			//System.out.println("Connection Opened");
 			
 			query="select * from bookDetails";
-			pst=con.prepareStatement(query);
+			pst=connection.prepareStatement(query);
 			
 			ResultSet rs=pst.executeQuery();
 			while(rs.next()) {
@@ -86,9 +95,7 @@ public class DisplayBooksServlet extends HttpServlet {
 			String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
                     create().toJson(list  );
 			writer.print(json);
-			
-			//writer.print(resSuccDisplay);
-			
+			//writer.print(resSuccDisplay);			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -22,33 +22,41 @@ import com.google.gson.GsonBuilder;
 import libraryManApp.Books;
 import libraryManApp.Response;
 import libraryManApp.UserBookDetails;
+import libraryManApp.libraryConnection;
 
 
 @WebServlet(name="UserBooksAction" , urlPatterns= {"/UserBooksAction"})
 public class UserBooksAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
+	
+	public void init() throws ServletException{
+		super.init();
+		connection=con.libraryCon();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<UserBookDetails> bookList = new ArrayList<UserBookDetails>();
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		String DB_URL="jdbc:postgresql://localhost:5432/Library";
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		//response.setHeader("Access-Control-Allow-Methods", "GET");
+		/*String DB_URL="jdbc:postgresql://localhost:5432/Library";
 		String userName="postgres";
-		String password="database";
+		String password="database";*/
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
 		resSuccess.setStatusCode(0);
 		PrintWriter writer =response.getWriter();
 		try {
-			Class.forName("org.postgresql.Driver");
+			/*Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(DB_URL, userName, password);
-			System.out.println("Connection Opened");
+			System.out.println("Connection Opened");*/
 			
 			
 			//String statusHide ="NO";
 			query="select title, publisher, category, year from bookDetails where hide= 'no' ";/*' "+ statusHide +"'"*/ //where hide=No
-			pst=con.prepareStatement(query);
+			pst=connection.prepareStatement(query);
 			
 			ResultSet rs = pst.executeQuery();
 			System.out.println("Query ok");
@@ -73,7 +81,6 @@ public class UserBooksAction extends HttpServlet {
 			String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
                     create().toJson(bookList  );
 			writer.print(json);
-			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

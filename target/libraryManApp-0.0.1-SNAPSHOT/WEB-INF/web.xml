@@ -99,4 +99,45 @@
     <servlet-name>SearchServlet</servlet-name>
     <url-pattern>/SearchServlet</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>libraryFilter</display-name>
+    <filter-name>libraryFilter</filter-name>
+    <filter-class>com.mokalmat.libraryManApp.Servlets.libraryFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <url-pattern>/libraryFilter</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>addBookServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>DeleteBookServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>DisplayBooksServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>EditBookServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>EditDetailsServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>HideServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>SearchServlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>libraryFilter</filter-name>
+    <servlet-name>UserBooks</servlet-name>
+  </filter-mapping>
 </web-app>

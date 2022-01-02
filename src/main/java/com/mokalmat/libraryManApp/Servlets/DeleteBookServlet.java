@@ -16,17 +16,25 @@ import com.google.gson.Gson;
 
 import libraryManApp.Books;
 import libraryManApp.Response;
+import libraryManApp.libraryConnection;
 
 @WebServlet(name="DeleteBookServlet" , urlPatterns= {"/DeleteBookServlet"})
 public class DeleteBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
+	
+	public void init() throws ServletException{
+		super.init();
+		connection=con.libraryCon();
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		String DB_URL="jdbc:postgresql://localhost:5432/Library";
-		String userName="postgres";
-		String password="database";
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		//response.setHeader("Access-Control-Allow-Methods", "GET");
+		//String DB_URL="jdbc:postgresql://localhost:5432/Library";
+		//String userName="postgres";
+		//String password="database";
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
@@ -36,12 +44,12 @@ public class DeleteBookServlet extends HttpServlet {
 		Books book =new Books();
 		PrintWriter writer =response.getWriter();
 		try {
-			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection(DB_URL, userName, password);
-			System.out.println("Connection Opened");
+			//Class.forName("org.postgresql.Driver");
+			//Connection con = DriverManager.getConnection(DB_URL, userName, password);
+			//System.out.println("Connection Opened");
 			
 			query="delete from bookDetails where id=?";
-			pst=con.prepareStatement(query);
+			pst=connection.prepareStatement(query);
 			
 			String ID = request.getParameter("ID");
 			int intID = Integer.parseInt(ID);

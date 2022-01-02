@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import libraryManApp.Books;
 import libraryManApp.Response;
+import libraryManApp.libraryConnection;
 
 /**
  * Servlet implementation class EditDetailsServlet
@@ -26,13 +27,20 @@ import libraryManApp.Response;
 @WebServlet(name="EditDetailsServlet" , urlPatterns={"/EditDetailsServlet"})
 public class EditDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
+	
+	public void init() throws ServletException{
+		super.init();
+		connection=con.libraryCon();
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "POST");
-		String DB_URL="jdbc:postgresql://localhost:5432/Library";
-		String userName="postgres";
-		String password="database";
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		//response.setHeader("Access-Control-Allow-Methods", "POST");
+		//String DB_URL="jdbc:postgresql://localhost:5432/Library";
+		//String userName="postgres";
+		//String password="database";
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
@@ -48,9 +56,9 @@ public class EditDetailsServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		try {
 			//Open Connection
-			Class.forName("org.postgresql.Driver");
-			Connection connection = DriverManager.getConnection(DB_URL, userName, password);
-			System.out.println("Connection opended");
+			//Class.forName("org.postgresql.Driver");
+			//Connection connection = DriverManager.getConnection(DB_URL, userName, password);
+			//System.out.println("Connection opended");
 			
 			//Read Data from front End 
 			InputStream in = request.getInputStream();
@@ -71,11 +79,10 @@ public class EditDetailsServlet extends HttpServlet {
 			pst.setString(2, book.getPublisher());
 			pst.setString(3, book.getCategory());
 			pst.setInt(4, book.getYear());
-			pst.setString(5,"NO");
+			pst.setString(5,"no");
 			pst.setInt(6, book.getID());
 			pst.executeUpdate();
 			writer.print(Succ);
-			
 			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

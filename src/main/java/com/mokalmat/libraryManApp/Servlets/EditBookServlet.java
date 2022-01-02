@@ -19,10 +19,18 @@ import com.google.gson.Gson;
 
 import libraryManApp.Books;
 import libraryManApp.Response;
+import libraryManApp.libraryConnection;
 
 @WebServlet(name="EditBookServlet", urlPatterns= {"/EditBookServlet"})
 public class EditBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	libraryConnection con = new libraryConnection();
+	Connection connection=null;
+	
+	public void init() throws ServletException{
+		super.init();
+		connection=con.libraryCon();
+	}
       
     public EditBookServlet() {
         super();
@@ -33,11 +41,11 @@ public class EditBookServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		String DB_URL="jdbc:postgresql://localhost:5432/Library";
-		String userName="postgres";
-		String password="database";
+		//response.setHeader("Access-Control-Allow-Origin", "*");
+		//response.setHeader("Access-Control-Allow-Methods", "GET");
+		//String DB_URL="jdbc:postgresql://localhost:5432/Library";
+		//String userName="postgres";
+		//String password="database";
 		String query;
 		PreparedStatement pst;
 		Response resSuccess =new Response();
@@ -50,12 +58,12 @@ public class EditBookServlet extends HttpServlet {
 		PrintWriter writer =response.getWriter();
 		try {
 			
-			Class.forName("org.postgresql.Driver");
-			Connection con = DriverManager.getConnection(DB_URL, userName, password);
-			System.out.println("Connection Opened");
+			//Class.forName("org.postgresql.Driver");
+			//Connection con = DriverManager.getConnection(DB_URL, userName, password);
+			//System.out.println("Connection Opened");
 			
 			query="select * from bookDetails where id=?";
-			pst=con.prepareStatement(query);
+			pst=connection.prepareStatement(query);
 			/*InputStream in = request.getInputStream();
 		    InputStreamReader streamReader = new InputStreamReader(in);
 		    book = gsonConvert.fromJson(streamReader, Books.class);*/
@@ -78,7 +86,6 @@ public class EditBookServlet extends HttpServlet {
 			System.out.println("ID:"+book.getID() + "Title: "+ book.getTitle());
 			String bookData = gsonData.toJson(book);
 			writer.print(bookData);
-			con.close();
 			
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

@@ -1,6 +1,7 @@
 com\mokalmat\libraryManApp\Servlets\SearchServlet.class
 libraryManApp\Books.class
 libraryManApp\getConnectionLibrary.class
+libraryManApp\libraryConnection.class
 libraryManApp\UserBookDetails.class
 com\mokalmat\libraryManApp\Servlets\HideServlet.class
 com\mokalmat\libraryManApp\Servlets\DeleteBookServlet.class
@@ -9,6 +10,7 @@ libraryManApp\Response.class
 com\mokalmat\libraryManApp\Servlets\EditBookServlet.class
 com\mokalmat\libraryManApp\Servlets\addBook.class
 com\mokalmat\libraryManApp\Servlets\addBookServlet.class
+com\mokalmat\libraryManApp\Servlets\libraryFilter.class
 com\mokalmat\libraryManApp\Servlets\DisplayBooksServlet.class
 com\mokalmat\libraryManApp\Servlets\UserBooksAction.class
 libraryManApp\BookDetails.class
